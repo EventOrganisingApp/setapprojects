@@ -28,6 +28,7 @@ class _CreateEventState extends State<CreateEvent> {
   TextEditingController postcodeController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController timeController = TextEditingController();
+  TextEditingController inviteesController = TextEditingController();
 
   void _showDatePicker(BuildContext context) {
     showCupertinoModalPopup(
@@ -97,6 +98,13 @@ class _CreateEventState extends State<CreateEvent> {
       time: eventTime,
     );
     UserRepository.instance.addEventToUser(userDocumentId, event);
+    String attendees = inviteesController.text;
+    List<String> invitees = attendees.split(" ");
+    for (int i = 0; i < invitees.length; i++) {
+      List<UserModel> userInv = await ProfileController.instance.getInviteData(invitees[i]);
+      String? inviteID = userInv[0].id;
+      UserRepository.instance.inviteUser(inviteID!, event);
+    }
   }
 
   @override
@@ -355,6 +363,49 @@ class _CreateEventState extends State<CreateEvent> {
                     isDense: false,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                child: TextField(
+                  controller: inviteesController,
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 16,
+                    color: Color(0xff000000),
+                  ),
+                  decoration: InputDecoration(
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                      borderSide:
+                      BorderSide(color: Color(0xff9e9e9e), width: 1),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                      borderSide:
+                      BorderSide(color: Color(0xff9e9e9e), width: 1),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                      borderSide:
+                      BorderSide(color: Color(0xff9e9e9e), width: 1),
+                    ),
+                    labelText: "Invitees",
+                    labelStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 16,
+                      color: Color(0xff9e9e9e),
+                    ),
+                    filled: true,
+                    fillColor: Color(0x00ffffff),
+                    isDense: false,
+                    contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   ),
                 ),
               ),
