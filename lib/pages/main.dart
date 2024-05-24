@@ -47,11 +47,9 @@ class MainApp extends StatelessWidget {
         for (var doc in snapshot.docs) {
           var eventData = doc.data();
           String eventName = eventData['eventName'] ?? 'No Name';
-
           String eventLocation = eventData['city'] ?? 'No Location';
           String eventType = eventData['eventType'] ?? 'No Type';
           String eventPostcode = eventData['postcode'] ?? 'No Postcode';
-
           DateTime eventTime = (eventData['time'] as Timestamp).toDate();
           String eventDetails = "Location: $eventLocation\nDate: ${eventTime.day}/${eventTime.month}/${eventTime.year} Time: ${eventTime.hour}:${eventTime.minute.toString().padLeft(2, '0')}\nPostcode: $eventPostcode";
 

@@ -28,12 +28,12 @@ class InvitedEvents extends StatelessWidget {
       for (var doc in snapshot.docs) {
         var eventData = doc.data();
         String eventName = eventData['eventName'] ?? 'No Name';
-        DateTime eventDate = (eventData['date'] as Timestamp).toDate();
         String eventLocation = eventData['city'] ?? 'No Location';
         String eventType = eventData['eventType'] ?? 'No Type';
         String eventPostcode = eventData['postcode'] ?? 'No Postcode';
+        DateTime eventTime = (eventData['time'] as Timestamp).toDate();
+        String eventDetails = "Location: $eventLocation\nDate: ${eventTime.day}/${eventTime.month}/${eventTime.year} Time: ${eventTime.hour}:${eventTime.minute.toString().padLeft(2, '0')}\nPostcode: $eventPostcode";
 
-        String eventDetails = "Location: $eventLocation\nDate: $eventDate";
         eventWidgets.add(
             Padding(
               padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.024),
