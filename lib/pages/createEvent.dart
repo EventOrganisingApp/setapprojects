@@ -5,6 +5,7 @@ import 'user_repository.dart';
 import 'user_model.dart';
 import 'profile_controller.dart';
 import 'main.dart';
+import 'package:setapprojects/pages/navBar.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -399,9 +400,14 @@ class _CreateEventState extends State<CreateEvent> {
                     print("creating started");
                     createEvent();
                     // Navigate back to MyApp after event creation
-                    Navigator.of(context).pop();
-                    print("creating finished");
-                  },
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                      // Assuming HomePage is the main screen
+                          (Route<dynamic> route) => false,
+                    );
+                  }
+
+,
                   color: Color(0xff3a57e8),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
