@@ -126,7 +126,7 @@ class InvitedEvents extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(15),
                           child: Text(
-                              "Attending Events",
+                              "Invited Events",
                               style: TextStyle(
                                 fontSize: 30,
                                 decoration: TextDecoration.underline,
