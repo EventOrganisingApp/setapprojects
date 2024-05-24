@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'profile_controller.dart';
 
 
 
@@ -175,12 +176,12 @@ Widget build(BuildContext context) {
 
                   ),
                 ),
-                const Align(
+                 Align(
                   alignment: Alignment.center,
                   child: Padding(
                     padding: EdgeInsets.all(15),
                     child: Text(
-                      "Your events",
+                      "${accountName}'s events",
                       style: TextStyle(
                         fontSize: 30,
                         decoration: TextDecoration.underline,

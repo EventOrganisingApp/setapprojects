@@ -6,6 +6,7 @@ import 'user_repository.dart';
 
 String userDocumentId = '';
 String userPass = '';
+String accountName ='';
 
 class ProfileController extends GetxController {
   static ProfileController get instance => Get.find();
@@ -15,6 +16,7 @@ class ProfileController extends GetxController {
     List<UserModel> userDataList = await _userRepo.getUserDetails(email);
     userDocumentId = userDataList[0].id!;
     userPass = userDataList[0].passWord;
+    accountName = userDataList[0].userName;
     return userDataList;
   }
 
